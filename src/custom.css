@@ -1,0 +1,8 @@
+.login-image: {
+  --opacidad-negro: 0.5;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, var(--opacidad-negro)),
+      rgba(0, 0, 0, var(--opacidad-negro))
+    ),
+    url("https://i0.wp.com/pxlbbq.com/wp-content/uploads/2017/07/utawarerumono-mask-of-deception-image-a-la-une.jpg?fit=1600%2C1007&ssl=1");
+}
