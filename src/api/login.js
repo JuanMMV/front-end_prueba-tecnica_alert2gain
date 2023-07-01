@@ -1,15 +1,20 @@
 import axios from "axios";
+import { setLocalStorage } from "../utils/localStorageUtils";
 
 const host = `https://devtest.a2g.io/api/Auth`;
 
-export const getTokenAuth = async () => {
+export const getTokenAuth = async (email, password) => {
 	try {
 		const res = await axios.post(host, {
-			Email: "juan.menares.vega@gmail.com",
-			Password: "9kfqqOapc5YPpIqZS9uq",
+			Email: email,
+			Password: password,
 		});
 		if (res.status == 200) {
-			return { email: res.data.email, token: res.data.token };
+			// return { email: res.data.email, token: res.data.token };
+			setLocalStorage("token", res.data.token)
+			setLocalStorage("email", res.data.email)
+			return res.status
+	
 		}
 		return null;
 	} catch (error) {
