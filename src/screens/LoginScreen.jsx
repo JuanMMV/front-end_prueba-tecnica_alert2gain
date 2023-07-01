@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getTokenAuth } from "../api/login";
 import { useNavigate } from "react-router-dom";
+import ToastComponent from "../components/ToastComponent";
 
 
 const LoginScreen = () => {
@@ -10,7 +11,7 @@ const LoginScreen = () => {
 	useEffect(() => {
 		// Si el local storage tiene datos, se borran los datos.
 		if (localStorage.length != 0) {
-			// localStorage.clear();
+			localStorage.clear();
 			console.log('entro en local')
 		}
 
@@ -25,15 +26,18 @@ const LoginScreen = () => {
 		if (lala) {
 			console.log('Login OK')
 			navigate('/home')
+			// toast.success("Logeado con exito");
+			ToastComponent({ textData: "Logeado con exito", color: "#059669" })
 
 		} else {
 			console.log('No tengo datos');
+			ToastComponent({ textData: "Error...Nombre o contraseña no son correctas" })
 		}
 
 	};
 
 	return (
-		<div className="flex h-screen bg-[url('https://fondosmil.com/fondo/88194.jpg')] bg-cover bg-no-repeat bg-center">
+		<div className="flex h-screen bg-indigo-600">
 			<div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
 				<header className="flex flex-col">
 					<h1 className="mx-auto mb-5 text-lg font-bold">Login</h1>

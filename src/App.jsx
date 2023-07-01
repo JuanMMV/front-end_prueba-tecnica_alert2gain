@@ -1,9 +1,7 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -12,6 +10,7 @@ const App = () => {
         <Route path="/" element={<LoginScreen />} />
         <Route path="/home" element={<HomeScreen />} />
       </Routes>
+      <Toaster />
     </BrowserRouter>
   );
 };
