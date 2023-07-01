@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getTokenAuth } from "../api/login";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginScreen = () => {
 
-	const [errorMenssages, setErrorMenssages] = useState({});
+	const navigate = useNavigate()
 
-	const renderErrorMessage = (name) => {
-		name === errorMenssages.name && (
-			<div className="text-red-600">
-				<span>error {name} no existe...</span>
-			</div>
-		);
-	};
+	useEffect(() => {
+		// Si el local storage tiene datos, se borran los datos.
+		if (localStorage.length != 0) {
+			// localStorage.clear();
+			console.log('entro en local')
+		}
+
+	}, [])
+
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -21,7 +24,8 @@ const LoginScreen = () => {
 
 		if (lala) {
 			console.log('Login OK')
-			console.log(lala)
+			navigate('/home')
+
 		} else {
 			console.log('No tengo datos');
 		}
@@ -29,7 +33,7 @@ const LoginScreen = () => {
 	};
 
 	return (
-		<div className="flex h-screen bg-indigo-700">
+		<div className="flex h-screen bg-[url('https://fondosmil.com/fondo/88194.jpg')] bg-cover bg-no-repeat bg-center">
 			<div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
 				<header className="flex flex-col">
 					<h1 className="mx-auto mb-5 text-lg font-bold">Login</h1>
@@ -61,7 +65,7 @@ const LoginScreen = () => {
 					</form>
 				</header>
 			</div>
-			{/* <div className="bg-[url('https://fondosmil.com/fondo/88194.jpg')] bg-cover h-screen bg-no-repeat bg-center">
+			{/* <div className="bg-[url('https://fondosmil.com/fondo/88194.jpg')] bg-cover h-screen bg-no-repeat bg-center brightness-50">
 				<div class=" absolute inset-0 bg-black opacity-50"></div>
 			</div>
 			<h1 className="absolute left-0 right-0 top-0 bottom-0 m-auto">Login Screen</h1> */}
