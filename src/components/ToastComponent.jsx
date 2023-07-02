@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 
 const ToastComponent = (props) => {
 
-    const { textData, color = '#e30202' } = props;
+    const { textData, color = '#b91c1c' } = props;
 
     toast((t) => (
         <div className='text-center'>

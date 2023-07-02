@@ -13,10 +13,10 @@ const LogoutComponent = () => {
         <div>
             <Link
                 to="/"
-                className="px-3 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg text-center"
+                className="px-5 py-5 bg-red-800 hover:bg-red-600 text-white rounded-lg me-0 lg:me-10 shadow-xl"
                 onClick={() => handleLogout()}
             >
-                Logout
+                <span className='font-semibold text-lg'>Cerrar Sesión</span>
             </Link>
         </div>
     )

@@ -12,49 +12,45 @@ const LoginScreen = () => {
 		// Si el local storage tiene datos, se borran los datos.
 		if (localStorage.length != 0) {
 			localStorage.clear();
-			console.log('entro en local')
 		}
-
 	}, [])
 
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const { mail, pass } = document.forms[0]
-		const lala = await getTokenAuth(mail.value, pass.value)
 
-		if (lala) {
+		const { mail, pass } = document.forms[0]
+		const token = await getTokenAuth(mail.value, pass.value)
+
+		if (token) {
 			console.log('Login OK')
 			navigate('/home')
-			// toast.success("Logeado con exito");
-			ToastComponent({ textData: "Logeado con exito", color: "#059669" })
+			ToastComponent({ textData: "Sesión iniciada", color: "#059669" })
 
 		} else {
-			console.log('No tengo datos');
-			ToastComponent({ textData: "Error...Nombre o contraseña no son correctas" })
+			ToastComponent({ textData: "Error... Credenciales inválidas" })
 		}
-
 	};
 
 	return (
-		<div className="flex h-screen bg-indigo-600">
-			<div className="w-full max-w-xs m-auto bg-indigo-100 rounded p-5">
+		<div className="flex h-screen bg-slate-900">
+			<div className="w-full max-w-xs m-auto bg-gray-700 rounded-xl p-5">
 				<header className="flex flex-col">
-					<h1 className="mx-auto mb-5 text-lg font-bold">Login</h1>
+					<h1 className="mx-auto mb-5 text-lg font-bold text-indigo-50">Login</h1>
 					<form onSubmit={handleSubmit}>
 						<>
-							<label className="block mb-2 text-indigo-500">Email</label>
+							<label className="block mb-2 text-indigo-50">Email</label>
 							<input
-								className="w-full p-2 mb-6 text-indigo-700 border border-indigo-500 outline-none focus:bg-gray-300 rounded-md"
+								className="w-full p-2 mb-6 bg-slate-500 border border-slate-400 outline-none focus:bg-gray-300 rounded-md"
 								type="email"
 								name="mail"
 								required
 							/>
 						</>
 						<>
-							<label className="block mb-2 text-indigo-500">Password</label>
+							<label className="block mb-2 text-indigo-50">Password</label>
 							<input
-								className="w-full p-2 mb-6 text-indigo-700 border border-indigo-500 outline-none focus:bg-gray-300 rounded-md"
+								className="w-full p-2 mb-6 bg-slate-500 border border-slate-400 outline-none focus:bg-gray-300 rounded-md"
 								type="password"
 								name="pass"
 								required
@@ -62,17 +58,13 @@ const LoginScreen = () => {
 						</>
 						<>
 							<input
-								className="w-full bg-indigo-700 hover:bg-pink-700 text-white font-bold py-2 px-4 mb-6 rounded cursor-pointer"
+								className="w-full bg-green-700 hover:bg-green-600 text-indigo-50 font-bold py-2 px-4 mb-6 rounded cursor-pointer"
 								type="submit"
 							/>
 						</>
 					</form>
 				</header>
 			</div>
-			{/* <div className="bg-[url('https://fondosmil.com/fondo/88194.jpg')] bg-cover h-screen bg-no-repeat bg-center brightness-50">
-				<div class=" absolute inset-0 bg-black opacity-50"></div>
-			</div>
-			<h1 className="absolute left-0 right-0 top-0 bottom-0 m-auto">Login Screen</h1> */}
 		</div>
 	);
 };
