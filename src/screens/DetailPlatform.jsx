@@ -1,16 +1,26 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getPlatformById } from "../api/login"
 import { useEffect, useState } from "react"
 import HeaderComponent from "../components/HeaderComponent"
+import ToastComponent from "../components/ToastComponent"
 
 const DetailPlatform = () => {
     const { id } = useParams()
+    const navigate = useNavigate()
     const [data, setData] = useState()
     const [showS3, setShowS3] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
-            setData(await getPlatformById(id))
+            try {
+                setData(await getPlatformById(id))
+            } catch (error) {
+                if (localStorage.getItem('email')) {
+                    ToastComponent({ textData: "Sesión expirada... Por favor vuelva a iniciar sesión" })
+                }
+                localStorage.clear()
+                navigate('/')
+            }
         }
         fetchData()
     }, [])
@@ -56,9 +66,9 @@ const DetailPlatform = () => {
                                     </tbody>
                                 </table>
                                 <div className='w-auto mt-5 flex justify-center'>
-                                    <button 
-                                        className='bg-green-700 p-5 rounded-xl shadow-2xl text-white font-bold' 
-                                        onClick={()=>{setShowS3(!showS3)}}
+                                    <button
+                                        className='bg-green-700 p-5 rounded-xl shadow-2xl text-white font-bold'
+                                        onClick={() => { setShowS3(!showS3) }}
                                     >
                                         {showS3 ? 'Ocultar reporte' : 'Mostrar ultimo reporte'}
                                     </button>

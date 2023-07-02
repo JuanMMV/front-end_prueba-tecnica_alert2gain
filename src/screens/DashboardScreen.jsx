@@ -6,6 +6,8 @@ import CardComponent from '../components/CardComponent'
 import { useNavigate } from 'react-router-dom'
 import PaginationComponent from '../components/paginationComponent'
 import HeaderComponent from '../components/HeaderComponent'
+import ToastComponent from '../components/ToastComponent'
+import { getLocalStorage } from '../utils/localStorageUtils'
 
 const DashboardScreen = () => {
 	const navigate = useNavigate()
@@ -16,40 +18,64 @@ const DashboardScreen = () => {
 
 	// useEffect(() => {
 	// 	const fetchData = async () => {
-	// 		setData(await getAllPlatforms())
-	// 		// setData(await getPlatformsByFlota(1, 2))
+	// 		try {
+	// 			if(data && getLocalStorage('email')) {
+	// 				setData(await getAllPlatforms())
+	// 			}
+	// 		} catch (error) {
+	// 			console.log('lalano')
+	// 		}
+
 	// 	}
 	// 	fetchData()
 	// }, [])
 
 	useEffect(() => {
-		const fetchData = async() => {
-			if(selectFleet){
-				console.log('entre, cambiando datos');
-				setData(await getPlatformsByFlota(selectFleet, page))
-				setPage(1)
-			} else {
-				setData(await getAllPlatforms())
-				setPage(1)
+		const fetchData = async () => {
+			try {
+				if (selectFleet) {
+					console.log('entre, cambiando datos');
+					setData(await getPlatformsByFlota(selectFleet, page))
+					setPage(1)
+				} else {
+					setData(await getAllPlatforms())
+					setPage(1)
+				}
+			} catch (error) {
+				if (localStorage.getItem('email')) {
+					console.log('NOESTASLOGEADO')
+					ToastComponent({ textData: "Sesión expirada... Por favor vuelva a iniciar sesión" })
+				}
+				localStorage.clear()
+				navigate('/')
 			}
 		}
 		fetchData()
 	}, [selectFleet])
 
-	
+
 	useEffect(() => {
-		const fetchData = async() => {
-			if(selectFleet){
-				setData(await getPlatformsByFlota(selectFleet, page))
-			} else {
-				setData(await getAllPlatformsByPage(page))
+		const fetchData = async () => {
+			try {
+				if (selectFleet) {
+					setData(await getPlatformsByFlota(selectFleet, page))
+				} else {
+					setData(await getAllPlatformsByPage(page))
+				}
+			} catch (error) {
+				if (localStorage.getItem('email')) {
+					console.log('NOESTASLOGEADO2')
+					ToastComponent({ textData: "Sesión expirada... Por favor vuelva a iniciar sesión" })
+				}
+				localStorage.clear()
+				navigate('/')
 			}
 		}
 		fetchData()
 	}, [page])
-	
 
-	const handleCard = async(id) => {
+
+	const handleCard = async (id) => {
 		navigate(`/detail/${id}`)
 	}
 
