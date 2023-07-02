@@ -6,11 +6,11 @@ import HeaderComponent from "../components/HeaderComponent"
 const DetailPlatform = () => {
     const { id } = useParams()
     const [data, setData] = useState()
+    const [showS3, setShowS3] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
             setData(await getPlatformById(id))
-            // setData(await getPlatformsByFlota(1, 2))
         }
         fetchData()
     }, [])
@@ -24,12 +24,19 @@ const DetailPlatform = () => {
             {data ?
                 (
                     <div className="w-full flex justify-center items-center flex-col">
-                        <div className='flex p-2 bg-gray-800 w-auto xl:w-[75%] justify-center xl:justify-between rounded-xl items-center xl:items-start flex-col xl:flex-row'>
+                        <div className='flex p-2 bg-gray-800 w-auto xl:w-[75%] h-full justify-center rounded-xl items-center flex-col xl:flex-row'>
 
-                            <img src={data.img} className='rounded-xl' />
+                            <div className='p-0 xl:p-3 w-[80%] flex justify-center items-center'>
+                                <img src={data.img} className='rounded-xl' />
+                            </div>
 
 
-                            <div className='flex flex-col ms-0 xl:ms-20 p-3 mt-3'>
+
+                            <div className='flex flex-col ms-0 xl:ms-20 items-center p-3 mt-3 w-full lg:h-[600px] h-auto'>
+                                <div className='w-full pl-7'>
+                                    <h1 className='text-white font-bold text-lg p-5'>Datos:</h1>
+                                </div>
+
                                 <table>
                                     <tbody className='w-full'>
                                         <tr className="bg-slate-700">
@@ -42,19 +49,31 @@ const DetailPlatform = () => {
                                             <td className='text-center py-3 px-5 text-white'>{data.fleet}</td>
                                         </tr>
 
-                                        <tr>
+                                        <tr className="bg-slate-700">
                                             <td className='text-start py-3 px-5 text-white font-bold'>Ultimo reporte:</td>
                                             <td className='text-center py-3 px-5 text-white'><a href={data.lastReport}>{data.lastReport}</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div className='w-auto mt-5 flex justify-center'>
+                                    <button 
+                                        className='bg-green-700 p-5 rounded-xl shadow-2xl text-white font-bold' 
+                                        onClick={()=>{setShowS3(!showS3)}}
+                                    >
+                                        {showS3 ? 'Ocultar reporte' : 'Mostrar ultimo reporte'}
+                                    </button>
+                                </div>
+                                {showS3 && (
+                                    <div className=' bg-slate-700 shadow-xl transform scale-75 -m-11 rounded-xl'>
+                                        <iframe
+                                            src={data.lastReport}
+                                            title="url S3"
+                                            width="520px"
+                                            height="400px"
+                                        />
+                                    </div>
+                                )}
                             </div>
-                            {/* <iframe
-                                                src={data.lastReport}
-                                                title="Contenido externo"
-                                                width="auto"
-                                                height="auto"
-                                            /> */}
                         </div>
                         <h1 className="text-white font-bold text-3xl p-7">Sensores</h1>
 
