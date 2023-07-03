@@ -26,7 +26,6 @@ const PaginationComponent = ({ page, setPage, totalPages }) => {
                     className="inline-flex items-center px-4 py-2 font-medium rounded-l bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white"
                     onClick={() => handlePage('sub')}    
                 >
-                    ⮜
                     Anterior
                 </button>
                 <button 
@@ -34,7 +33,6 @@ const PaginationComponent = ({ page, setPage, totalPages }) => {
                     onClick={() => handlePage('sum')}   
                 >
                     Siguiente
-                    ⮞
                 </button>
             </div>
         </div>
