@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import HeaderComponent from "../components/HeaderComponent"
 import ToastComponent from "../components/ToastComponent"
 
-const DetailPlatform = () => {
+const DetailPlatformScreen = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const [data, setData] = useState()
@@ -123,4 +123,4 @@ const DetailPlatform = () => {
     )
 }
 
-export default DetailPlatform
+export default DetailPlatformScreen

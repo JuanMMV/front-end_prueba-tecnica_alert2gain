@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen";
 import { Toaster } from "react-hot-toast";
 import DashboardScreen from "./screens/DashboardScreen";
-import DetailPlatform from "./screens/DetailPlatform";
+import DetailPlatformScreen from "./screens/DetailPlatformScreen";
 
 const App = () => {
 	return (
@@ -11,7 +11,7 @@ const App = () => {
 				<Routes>
 					<Route path="/" element={<LoginScreen />} />
 					<Route path="/home" element={<DashboardScreen />} />
-					<Route path="/detail/:id" element={<DetailPlatform />} />
+					<Route path="/detail/:id" element={<DetailPlatformScreen />} />
 				</Routes>
 				<Toaster />
 			</BrowserRouter>
