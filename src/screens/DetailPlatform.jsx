@@ -13,6 +13,7 @@ const DetailPlatform = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                window.scrollTo(0, 0);
                 setData(await getPlatformById(id))
             } catch (error) {
                 if (localStorage.getItem('email')) {
