@@ -3,6 +3,7 @@ import LoginScreen from "./screens/LoginScreen";
 import { Toaster } from "react-hot-toast";
 import DashboardScreen from "./screens/DashboardScreen";
 import DetailPlatformScreen from "./screens/DetailPlatformScreen";
+import NotFoundScreen from "./screens/NotFoundScreen";
 
 const App = () => {
 	return (
@@ -12,6 +13,7 @@ const App = () => {
 					<Route path="/" element={<LoginScreen />} />
 					<Route path="/home" element={<DashboardScreen />} />
 					<Route path="/detail/:id" element={<DetailPlatformScreen />} />
+					<Route path='*' element={<NotFoundScreen />}/>
 				</Routes>
 				<Toaster />
 			</BrowserRouter>
