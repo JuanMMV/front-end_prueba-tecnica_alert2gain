@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import LogoutComponent from '../components/LogoutComponent'
 import ButtonGroupComponent from '../components/ButtonGroupComponent'
-import { getAllPlatforms, getAllPlatformsByPage, getPlatformById, getPlatformsByFlota } from '../api/login'
+import { getAllPlatforms, getAllPlatformsByPage, getPlatformsByFlota } from '../api/login'
 import CardComponent from '../components/CardComponent'
 import { useNavigate } from 'react-router-dom'
 import PaginationComponent from '../components/paginationComponent'
 import HeaderComponent from '../components/HeaderComponent'
 import ToastComponent from '../components/ToastComponent'
-import { getLocalStorage } from '../utils/localStorageUtils'
 
 const DashboardScreen = () => {
 	const navigate = useNavigate()
