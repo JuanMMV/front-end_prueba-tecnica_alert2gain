@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import ButtonGroupComponent from '../components/ButtonGroupComponent'
-import { getAllPlatforms, getAllPlatformsByPage, getPlatformsByFlota } from '../api/login'
+import { getAllPlatforms, getAllPlatformsByPage, getPlatformsByFlota } from '../api/api'
 import CardComponent from '../components/CardComponent'
 import { useNavigate } from 'react-router-dom'
-import PaginationComponent from '../components/paginationComponent'
+import NextPageComponent from '../components/NextPageComponent'
 import HeaderComponent from '../components/HeaderComponent'
 import ToastComponent from '../components/ToastComponent'
 
@@ -95,7 +95,7 @@ const DashboardScreen = () => {
 									)
 								})}
 							</div>
-							<PaginationComponent page={page} setPage={setPage} totalPages={data.totalPages} />
+							<NextPageComponent page={page} setPage={setPage} totalPages={data.totalPages} />
 						</div>
 					) : (
 						<div className='h-screen w-auto'>

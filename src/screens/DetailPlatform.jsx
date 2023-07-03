@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { getPlatformById } from "../api/login"
+import { getPlatformById } from "../api/api"
 import { useEffect, useState } from "react"
 import HeaderComponent from "../components/HeaderComponent"
 import ToastComponent from "../components/ToastComponent"

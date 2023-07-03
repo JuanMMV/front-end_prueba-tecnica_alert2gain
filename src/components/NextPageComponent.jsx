@@ -1,5 +1,5 @@
 
-const PaginationComponent = ({ page, setPage, totalPages }) => {
+const NextPageComponent = ({ page, setPage, totalPages }) => {
 
     const handlePage = (operation) => {
         if(operation == 'sum' && page < totalPages){
@@ -40,4 +40,4 @@ const PaginationComponent = ({ page, setPage, totalPages }) => {
     )
 }
 
-export default PaginationComponent
+export default NextPageComponent

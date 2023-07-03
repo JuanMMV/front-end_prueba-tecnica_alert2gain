@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getTokenAuth } from "../api/login";
+import { getTokenAuth } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import ToastComponent from "../components/ToastComponent";
 
